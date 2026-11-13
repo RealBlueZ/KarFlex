@@ -1,4 +1,4 @@
-package com.example.karflex
+package com.example.karflex.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.karflex.R
+import com.example.karflex.model.Vehicle
+import com.example.karflex.pages.VerifyActivity
 
 class VehicleAdapter(private val vehicleList: List<Vehicle>) :
     RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder>() {
