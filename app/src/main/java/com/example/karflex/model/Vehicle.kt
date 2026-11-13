@@ -1,4 +1,4 @@
-package com.example.karflex
+package com.example.karflex.model
 
 data class Vehicle(
     val name: String,

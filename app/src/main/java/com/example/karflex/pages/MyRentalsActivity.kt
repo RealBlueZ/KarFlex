@@ -1,4 +1,4 @@
-package com.example.karflex
+package com.example.karflex.pages
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.example.karflex.R
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
