@@ -1,5 +1,6 @@
 package com.example.karflex
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class VehicleAdapter(private val vehicleList: List<Vehicle>) :
         holder.ivVehicle.setImageResource(vehicle.imageResId)
         holder.tvVehicleName.text = vehicle.name
         holder.tvVehicleType.text = vehicle.type
-        holder.tvVehiclePrice.text = vehicle.price
+        holder.tvVehiclePrice.text = vehicle.priceDisplay
 
         holder.btnRent.setOnClickListener {
         val context = holder.itemView.context
