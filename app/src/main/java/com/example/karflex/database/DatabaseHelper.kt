@@ -11,9 +11,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val DATABASE_VERSION = 1
 
         // buat nama tabel
-        const val TABLE_USERS = "users"
-        const val TABLE_RENTAL = "rental"
-        const val TABLE_VEHICLE = "vehicle"
+        const val TABLE_USERS = "Users"
+        const val TABLE_RENTAL = "Rentals"
+        const val TABLE_VEHICLE = "Vehicle"
 
         // entity untuk users
         const val USER_ID = "UserID"
@@ -84,7 +84,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         onCreate(db)
     }
 
-    override fun onConfigure(db: SQLiteDatabase){
+    override fun onConfigure(db: SQLiteDatabase?){
         super.onConfigure(db)
         db?.setForeignKeyConstraintsEnabled(true)
     }
