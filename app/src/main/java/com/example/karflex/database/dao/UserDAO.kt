@@ -2,8 +2,8 @@ package com.example.karflex.database.dao
 
 import android.content.ContentValues
 import android.database.Cursor
-import com.example.karflex.database.DatabaseHelper
-import com.example.karflex.model.UserProfile
+import com.example.karflex.database.dbhelper.DatabaseHelper
+import com.example.karflex.database.model.UserProfile
 
 class UserDAO(private val dbHelper: DatabaseHelper) {
     fun registerUser(username: String, password: String, number: String): Long {

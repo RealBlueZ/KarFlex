@@ -2,7 +2,7 @@ package com.example.karflex.database.dao
 
 import android.content.ContentValues
 import android.database.Cursor
-import com.example.karflex.database.DatabaseHelper
+import com.example.karflex.database.dbhelper.DatabaseHelper
 
 class VehicleDAO (private val dbHelper: DatabaseHelper) {
 

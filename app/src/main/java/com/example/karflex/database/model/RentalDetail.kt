@@ -1,4 +1,4 @@
-package com.example.karflex.model
+package com.example.karflex.database.model
 
 data class RentalDetail (
     val rentalId: Long,

@@ -1,4 +1,4 @@
-package com.example.karflex.database
+package com.example.karflex.database.dbhelper
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

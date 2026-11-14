@@ -1,8 +1,8 @@
 package com.example.karflex.database.dao
 
 import android.content.ContentValues
-import com.example.karflex.database.DatabaseHelper
-import com.example.karflex.model.RentalDetail
+import com.example.karflex.database.dbhelper.DatabaseHelper
+import com.example.karflex.database.model.RentalDetail
 
 class RentalDAO(private val dbHelper: DatabaseHelper)  {
 
