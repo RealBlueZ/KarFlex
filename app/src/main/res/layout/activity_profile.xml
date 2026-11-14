@@ -32,56 +32,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvAccountHub"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="Account Hub"
+                android:textColor="@color/tertiary_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvAccountHub"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Account Hub"
-                        android:textColor="@color/tertiary_color"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="6dp"/>
-
-                    <TextView
-                        android:id="@+id/tvMyProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="My Profile"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/primary_color"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="3dp"/>
-
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#D9D9D9"
-                    android:text="Edit"
-                    android:textSize="16sp"
-                    android:textColor="@color/primary_color"
-                    app:icon="@drawable/outline_edit_24"
-                    app:iconGravity="textStart"
-                    app:iconTint="@color/primary_color"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="12dp"/>
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvMyProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_color"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvProfile"
@@ -105,7 +76,7 @@
                         android:id="@+id/ivProfilePhoto"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/kaneki_profile"
+                        android:src="@drawable/photo_profile"
                         android:scaleType="centerCrop"
                         android:background="@drawable/bg_avatar_circle"
                         android:clipToOutline="true"/>
@@ -132,6 +103,7 @@
                                 android:layout_marginEnd="6dp"/>
 
                             <TextView
+                                android:id="@+id/tvPhoneNumber"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -154,6 +126,7 @@
                                 android:layout_marginEnd="6dp"/>
 
                             <TextView
+                                android:id="@+id/tvUsername"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
