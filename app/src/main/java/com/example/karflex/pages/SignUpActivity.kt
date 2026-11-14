@@ -31,6 +31,7 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
+                intent.putExtra("phone", phone)
                 startActivity(intent)
                 finish()
             }

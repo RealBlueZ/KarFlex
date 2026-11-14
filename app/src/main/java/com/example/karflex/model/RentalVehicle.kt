@@ -5,6 +5,6 @@ data class RentalVehicle(
     val vehicleName: String,
     val vehicleBrand: String,
     val durationRent: Int,
-    val startDateRent: Int,
+    val startDateRent: String,
     val statusRent: String
 )

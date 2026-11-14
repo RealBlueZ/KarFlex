@@ -25,10 +25,18 @@ class LoginActivity : AppCompatActivity() {
             val usernameOrEmail = etUserLogin.text.toString().trim()
             val password = etPassLogin.text.toString().trim()
 
+            val phone = intent.getStringExtra("phone")
+
             if (usernameOrEmail.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Username/Email dan Password harus diisi!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Login Berhasil! Selamat datang kembali.", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, ProfileActivity::class.java)
+                intent.putExtra("username", usernameOrEmail)
+                intent.putExtra("phoneNumber", phone)
+                startActivity(intent)
+                finish()
             }
         }
 
