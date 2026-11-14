@@ -11,6 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KarFlex">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <uses-permission android:name="android.permission.INTERNET" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -48,6 +55,14 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".pages.RentalHistoryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".pages.DetailVehicleActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".pages.LocationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

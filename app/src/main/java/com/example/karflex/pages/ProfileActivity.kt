@@ -27,7 +27,7 @@ class ProfileActivity : BaseActivity() {
 
         // AMBIL DARI LOGIN ACTIVITY
         val username = intent.getStringExtra("username")
-        val phone = intent.getStringExtra("phone")
+        val phone = intent.getStringExtra("phoneNumber")
 
         val tvPhone = findViewById<TextView>(R.id.tvPhoneNumber)
         val tvUsername = findViewById<TextView>(R.id.tvUsername)
@@ -41,7 +41,7 @@ class ProfileActivity : BaseActivity() {
         }
 
         llStoreLocation.setOnClickListener {
-            val intent = Intent(this, StoreLocationActivity::class.java)
+            val intent = Intent(this, LocationActivity::class.java)
             startActivity(intent)
         }
 
