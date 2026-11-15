@@ -11,12 +11,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.karflex.R
+import com.example.karflex.helper.BaseActivity
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class MyRentalsActivity : AppCompatActivity() {
+class MyRentalsActivity : BaseActivity() {
 
     private var durationDays = 3
     private var pricePerDay = 350000
@@ -29,6 +30,8 @@ class MyRentalsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_rentals)
+
+        setupSharedComponents()
 
         val vehicleName = intent.getStringExtra("VEHICLE_NAME") ?: "Toyota Avanza"
         pricePerDay = intent.getIntExtra("VEHICLE_PRICE", 350000)
