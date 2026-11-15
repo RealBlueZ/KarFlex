@@ -17,10 +17,6 @@ class VerifyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verify)
 
-        val vehicleName = intent.getStringExtra("VEHICLE_NAME") ?: "Toyota Avanza"
-        val vehiclePrice = intent.getIntExtra("VEHICLE_PRICE", 350000)
-        val vehicleImage = intent.getIntExtra("VEHICLE_IMAGE", R.drawable.avanza)
-
         val btnBack = findViewById<TextView>(R.id.btnBackVerify)
         val etOtp1 = findViewById<EditText>(R.id.etOtp1)
         val etOtp2 = findViewById<EditText>(R.id.etOtp2)
@@ -44,11 +40,9 @@ class VerifyActivity : AppCompatActivity() {
             if (code.length < 4) {
                 Toast.makeText(this, "Masukkan 4 digit kode verifikasi!", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Verifikasi Berhasil! Pesanan dibuat.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MyRentalsActivity::class.java).apply {
-                    putExtra("VEHICLE_NAME", vehicleName)
-                    putExtra("VEHICLE_PRICE", vehiclePrice)
-                    putExtra("VEHICLE_IMAGE", vehicleImage)
+                Toast.makeText(this, "Verifikasi Berhasil!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, HomeActivity::class.java).apply {
+
                 }
                 startActivity(intent)
                 finish()

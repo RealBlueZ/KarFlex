@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Username or Email"
+                    android:text="Username"
                     android:textSize="12sp"
                     android:textColor="#333333"
                     android:textStyle="bold"/>
@@ -103,10 +103,11 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Enter your username or email"
+                    android:hint="Enter your username"
                     android:paddingHorizontal="16dp"
                     android:textSize="14sp"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +127,8 @@
                     android:hint="••••••••"
                     android:paddingHorizontal="16dp"
                     android:textSize="14sp"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black"/>
 
                 <TextView
                     android:id="@+id/tvForgotPass"
