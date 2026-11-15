@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Base.Theme.KarFlex"
+    <style name="Base.Theme.KarFlex.FullScreen"
         parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="android:colorBackground">@color/neutral_color</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
 
     </style>
 

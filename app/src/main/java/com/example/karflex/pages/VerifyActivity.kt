@@ -16,7 +16,6 @@ class VerifyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_verify)
 
         val btnBack = findViewById<TextView>(R.id.btnBackVerify)

@@ -16,7 +16,6 @@ import com.example.karflex.helper.BaseActivity
 class ProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_profile)
 
         setupSharedComponents()

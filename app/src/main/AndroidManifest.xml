@@ -21,6 +21,7 @@
 
         <activity
             android:name=".pages.LoginActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,30 +31,38 @@
         </activity>
         <activity
             android:name=".pages.SignUpActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="true" />
         <activity
             android:name=".pages.HomeActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="true" />
         <activity
             android:name=".pages.VerifyActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="true" />
         <activity
             android:name=".pages.MyRentalsActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="true" />
         <activity
             android:name=".pages.ProfileActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".pages.RentalHistoryActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".pages.DetailVehicleActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".pages.LocationActivity"
+            android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

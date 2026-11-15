@@ -19,7 +19,6 @@ import com.example.karflex.helper.BaseActivity
 class DetailVehicleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_detail_vehicle)
 
         setupSharedComponents()
