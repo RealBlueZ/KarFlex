@@ -1,16 +1,12 @@
 package com.example.karflex.pages
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
 import com.example.karflex.adapter.RentalHistoryAdapter
 import com.example.karflex.helper.BaseActivity
-import com.example.karflex.model.RentalVehicle
+import com.example.karflex.adapter.adapterModel.RentalVehicle
 
 class RentalHistoryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

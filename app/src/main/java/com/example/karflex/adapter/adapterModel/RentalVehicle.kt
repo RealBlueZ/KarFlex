@@ -1,4 +1,4 @@
-package com.example.karflex.model
+package com.example.karflex.adapter.adapterModel
 
 data class RentalVehicle(
     val vehicleImage: Int,
