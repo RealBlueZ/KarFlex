@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
 import com.example.karflex.adapter.adapterModel.Vehicle
 import com.example.karflex.adapter.VehicleAdapter
+import com.example.karflex.helper.BaseActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        setupSharedComponents()
 
         val rvVehicles = findViewById<RecyclerView>(R.id.rvVehicles)
         rvVehicles.layoutManager = LinearLayoutManager(this)
