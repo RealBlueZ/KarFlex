@@ -27,6 +27,7 @@ class SignUpActivity : AppCompatActivity() {
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etPhone = findViewById<EditText>(R.id.etPhone)
         val etPassword = findViewById<EditText>(R.id.etPassword)
+        val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
         val tvLoginHere = findViewById<TextView>(R.id.tvLoginHere)
 
@@ -34,6 +35,7 @@ class SignUpActivity : AppCompatActivity() {
             val username = etUsername.text.toString()
             val phone = etPhone.text.toString()
             val password = etPassword.text.toString()
+            val confirmPassword = etConfirmPassword.text.toString()
 
             // validasi jika input field masih ada yang kosong
             if (username.isEmpty() || phone.isEmpty() || password.isEmpty()) {
@@ -48,6 +50,9 @@ class SignUpActivity : AppCompatActivity() {
             // validasi nomor telpon minimal 10 digit atau lebih
             else if (phone.length < 10){
                 Toast.makeText(this, "Nomor minimal 10 angka!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            } else if (confirmPassword != password) {
+                Toast.makeText(this, "Password tidak sesuai dengan sebelumnya!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             // proses simpan user register ke database
