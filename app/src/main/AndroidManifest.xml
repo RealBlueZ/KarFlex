@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".pages.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,16 +40,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".pages.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".pages.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".VerifyActivity"
+            android:name=".pages.VerifyActivity"
             android:exported="true" />
         <activity
-            android:name=".MyRentalsActivity"
+            android:name=".pages.MyRentalsActivity"
             android:exported="true" />
         <activity
             android:name=".pages.ProfileActivity"
