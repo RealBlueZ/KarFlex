@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
-import com.example.karflex.model.Vehicle
+import com.example.karflex.adapter.adapterModel.Vehicle
 import com.example.karflex.adapter.VehicleAdapter
 
 class HomeActivity : AppCompatActivity() {

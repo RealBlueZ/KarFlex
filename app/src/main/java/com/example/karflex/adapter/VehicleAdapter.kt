@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
-import com.example.karflex.model.Vehicle
+import com.example.karflex.adapter.adapterModel.Vehicle
 import com.example.karflex.pages.VerifyActivity
 
 class VehicleAdapter(private val vehicleList: List<Vehicle>) :

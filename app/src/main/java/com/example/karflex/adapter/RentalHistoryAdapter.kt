@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
-import com.example.karflex.model.RentalVehicle
+import com.example.karflex.adapter.adapterModel.RentalVehicle
 
 class RentalHistoryAdapter(private val rentalHistoryList: List<RentalVehicle>):
     RecyclerView.Adapter<RentalHistoryAdapter.RentalHistoryViewHolder>() {
