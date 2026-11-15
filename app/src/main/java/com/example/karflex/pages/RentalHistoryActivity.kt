@@ -1,6 +1,7 @@
 package com.example.karflex.pages
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
@@ -11,6 +12,7 @@ import com.example.karflex.adapter.adapterModel.RentalVehicle
 class RentalHistoryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_rental_history)
 
         setupSharedComponents()
