@@ -88,7 +88,7 @@ class RentalDAO(private val dbHelper: DatabaseHelper)  {
         val db = dbHelper.readableDatabase
 
         val query = """SELECT r.${DatabaseHelper.RENTAL_ID}, r.${DatabaseHelper.RENTAL_VEHICLE_ID}, r.${DatabaseHelper.RENTAL_USERS_ID},
-            |v.${DatabaseHelper.VEHICLE_MODEL}, v.${DatabaseHelper.VEHICLE_BRAND}, v.${DatabaseHelper.VEHICLE_IMAGE}
+            |v.${DatabaseHelper.VEHICLE_MODEL}, v.${DatabaseHelper.VEHICLE_BRAND}, v.${DatabaseHelper.VEHICLE_IMAGE},
             |r.${DatabaseHelper.RENTAL_DURATION}, r.${DatabaseHelper.RENTAL_START_DATE}, r.${DatabaseHelper.RENTAL_STATUS}
             |FROM ${DatabaseHelper.TABLE_RENTAL} r
             |INNER JOIN ${DatabaseHelper.TABLE_VEHICLE} v ON r.${DatabaseHelper.RENTAL_VEHICLE_ID} = v.${DatabaseHelper.RENTAL_ID}

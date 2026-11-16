@@ -43,7 +43,12 @@ class HomeActivity : BaseActivity() {
                 100000,
                 R.drawable.honda
             ),
-            Vehicle("Yamaha Sport", "Manual • 150cc", "Rp 120.000 / day", 120000, R.drawable.yamaha)
+            Vehicle("Yamaha Sport",
+                "Manual • 150cc",
+                "Rp 120.000 / day",
+                120000,
+                R.drawable.yamaha)
+
     )
 
         val adapter = VehicleAdapter(vehicleList)
