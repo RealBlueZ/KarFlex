@@ -173,17 +173,41 @@
                     android:textStyle="bold"
                     android:layout_marginTop="12dp"/>
 
-                <EditText
-                    android:id="@+id/etPassword"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_input"
-                    android:hint="••••••••"
-                    android:paddingHorizontal="16dp"
-                    android:textSize="14sp"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_input">
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="••••••••"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="4dp"
+                        android:textSize="14sp"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/btnTogglePassword1"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_visibility_off"
+                        android:scaleType="center"
+                        android:contentDescription="Show password"
+                        android:padding="12dp"
+                        app:tint="#6C757D" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,17 +218,41 @@
                     android:textStyle="bold"
                     android:layout_marginTop="12dp"/>
 
-                <EditText
-                    android:id="@+id/etConfirmPassword"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_input"
-                    android:hint="••••••••"
-                    android:paddingHorizontal="16dp"
-                    android:textSize="14sp"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_input">
+
+                    <EditText
+                        android:id="@+id/etConfirmPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="••••••••"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="4dp"
+                        android:textSize="14sp"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/btnToggleConfirmPassword"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_visibility_off"
+                        android:scaleType="center"
+                        android:contentDescription="Show password"
+                        android:padding="12dp"
+                        app:tint="#6C757D" />
+
+                </LinearLayout>
 
                 <CheckBox
                     android:id="@+id/cbTerms"

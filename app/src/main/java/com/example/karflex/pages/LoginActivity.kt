@@ -6,8 +6,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -18,6 +20,7 @@ import com.example.karflex.R
 import com.example.karflex.database.dao.UserDAO
 import com.example.karflex.database.dbhelper.DatabaseHelper
 import androidx.core.content.edit
+import com.example.karflex.helper.PasswordToggleHelper
 import kotlin.random.Random
 
 class LoginActivity : AppCompatActivity() {
@@ -39,6 +42,13 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tvForgotPass = findViewById<TextView>(R.id.tvForgotPass)
         val tvRegisterHere = findViewById<TextView>(R.id.tvRegisterHere)
+
+        val passwordToggleHelper = PasswordToggleHelper(
+            etPassLogin,
+            findViewById<ImageButton>(R.id.btnTogglePassword)
+        )
+
+        passwordToggleHelper.setup()
 
         btnLogin.setOnClickListener {
             val username = etUserLogin.text.toString().trim()

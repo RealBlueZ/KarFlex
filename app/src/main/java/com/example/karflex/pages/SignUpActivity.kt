@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.karflex.R
 import com.example.karflex.database.dao.UserDAO
 import com.example.karflex.database.dbhelper.DatabaseHelper
+import com.example.karflex.helper.PasswordToggleHelper
 
 class SignUpActivity : AppCompatActivity() {
     // menggunakan lateinit / late initialization
@@ -31,6 +33,20 @@ class SignUpActivity : AppCompatActivity() {
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
         val tvLoginHere = findViewById<TextView>(R.id.tvLoginHere)
+
+        val passwordToggleHelper = PasswordToggleHelper(
+            etPassword,
+            findViewById<ImageButton>(R.id.btnTogglePassword1)
+        )
+
+        passwordToggleHelper.setup()
+
+        val confirmPasswordToggleHelper = PasswordToggleHelper(
+            etConfirmPassword,
+            findViewById<ImageButton>(R.id.btnToggleConfirmPassword)
+        )
+
+        confirmPasswordToggleHelper.setup()
 
         btnRegister.setOnClickListener {
             val username = etUsername.text.toString()
