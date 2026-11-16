@@ -6,6 +6,7 @@
     android:orientation="horizontal"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
+    android:paddingTop="32dp"
     android:background="@color/white">
 
     <LinearLayout
@@ -60,7 +61,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="12dp"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/avanza"
+        android:src="@drawable/photo_profile"
         android:scaleType="centerCrop"
         android:clipToOutline="true"
         android:clickable="true"
