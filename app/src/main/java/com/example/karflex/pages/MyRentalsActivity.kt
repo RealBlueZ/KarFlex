@@ -17,6 +17,7 @@ import com.example.karflex.adapter.MyRentalAdapter
 import com.example.karflex.adapter.adapterModel.MyRentalVehicles
 import com.example.karflex.helper.BaseActivity
 
+// Class yang mengurus page my rentals, yaitu page yang menampilkan vehicle apa saja yang sedang di rental user
 class MyRentalsActivity : BaseActivity() {
 
     private lateinit var rvMyRentals: RecyclerView
@@ -62,6 +63,7 @@ class MyRentalsActivity : BaseActivity() {
         }
     }
 
+    // Ngambil list kendaraan yang sedang di rental oleh user yang sudah log in
     private fun loadMyRentals() {
 
         // TODO:
@@ -71,6 +73,7 @@ class MyRentalsActivity : BaseActivity() {
         updateRentalList()
     }
 
+    // function untuk update ui berdasarkan isi list
     private fun updateRentalList() {
         rentalAdapter.notifyDataSetChanged()
 
@@ -83,6 +86,7 @@ class MyRentalsActivity : BaseActivity() {
         }
     }
 
+    // function yang bertugas untuk mendapatkan angka durasi baru dari user yang berupa Alert Dialog
     private fun showUpdateDialog(rental: MyRentalVehicles) {
 
         val input = EditText(this)
@@ -157,6 +161,7 @@ class MyRentalsActivity : BaseActivity() {
             }
     }
 
+    // function yang berfungsi untuk meminta konfirmasi dari user ketika ingin melakukan cancel rental
     private fun showCancelDialog(rental: MyRentalVehicles) {
 
         AlertDialog.Builder(this)

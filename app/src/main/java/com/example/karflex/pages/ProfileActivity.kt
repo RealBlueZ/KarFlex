@@ -50,6 +50,7 @@ class ProfileActivity : BaseActivity() {
         }
     }
 
+    // function untuk meminta konfirmasi user ketika ingin melakukan logout
     private fun showLogoutDialog() {
         AlertDialog.Builder(this)
             .setTitle("Logout")

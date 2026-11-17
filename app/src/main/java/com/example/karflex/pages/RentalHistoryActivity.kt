@@ -9,6 +9,8 @@ import com.example.karflex.adapter.RentalHistoryAdapter
 import com.example.karflex.helper.BaseActivity
 import com.example.karflex.adapter.adapterModel.RentalVehicle
 
+
+// class buat nampilin recycler view biasa (history rental)
 class RentalHistoryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
