@@ -32,25 +32,29 @@ class VerifyActivity : AppCompatActivity() {
 
         btnBack.setOnClickListener { finish() }
 
+        // kirim ulang kode OTP
         tvResend.setOnClickListener {
             Toast.makeText(this, "Kode OTP baru telah dikirim!", Toast.LENGTH_SHORT).show()
         }
 
+        // button di klik, dan verifikasi kode otp
         btnVerify.setOnClickListener {
             val code = "${etOtp1.text}${etOtp2.text}${etOtp3.text}${etOtp4.text}"
+            // jika kode belum ke-isi semua
             if (code.length < 4) {
                 Toast.makeText(this, "Masukkan 4 digit kode verifikasi!", Toast.LENGTH_SHORT).show()
-            } else {
+            }
+            // jika benar, pindah ke Home Activity
+            else {
                 Toast.makeText(this, "Verifikasi Berhasil!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, HomeActivity::class.java).apply {
-
                 }
                 startActivity(intent)
                 finish()
             }
         }
     }
-
+    // function untuk pindah input field otomatis, jika 1 box terisi
     private fun setupOtpAutoMove(current: EditText, next: EditText) {
         current.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

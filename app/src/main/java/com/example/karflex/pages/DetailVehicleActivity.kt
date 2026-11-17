@@ -12,14 +12,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.karflex.R
 import com.example.karflex.helper.BaseActivity
 
 class DetailVehicleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_detail_vehicle)
+
+        val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         setupSharedComponents()
 
@@ -93,7 +100,7 @@ class DetailVehicleActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            if(duration <= 0){
+            else if(duration <= 0){
                 Toast.makeText(this, "Rental duration must be more than 0", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

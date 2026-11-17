@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
 import com.example.karflex.adapter.adapterModel.Vehicle
+import com.example.karflex.pages.DetailVehicleActivity
 import com.example.karflex.pages.VerifyActivity
 
 class VehicleAdapter(private val vehicleList: List<Vehicle>) :
@@ -17,7 +18,6 @@ class VehicleAdapter(private val vehicleList: List<Vehicle>) :
 
     class VehicleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivVehicle: ImageView = itemView.findViewById(R.id.ivVehicle)
-        val tvStatus: TextView = itemView.findViewById(R.id.tvStatus)
         val tvVehicleName: TextView = itemView.findViewById(R.id.tvVehicleName)
         val tvVehicleType: TextView = itemView.findViewById(R.id.tvVehicleType)
         val tvVehiclePrice: TextView = itemView.findViewById(R.id.tvVehiclePrice)
@@ -37,11 +37,14 @@ class VehicleAdapter(private val vehicleList: List<Vehicle>) :
         holder.tvVehicleType.text = vehicle.type
         holder.tvVehiclePrice.text = vehicle.priceDisplay
 
+        // pindah ke DetailVehicleActivity untuk rent kendaraan, bawa data dari JSON
         holder.btnRent.setOnClickListener {
         val context = holder.itemView.context
-        val intent = Intent(context, VerifyActivity::class.java).apply {
+        val intent = Intent(context, DetailVehicleActivity::class.java).apply {
             putExtra("VEHICLE_NAME", vehicle.name)
-            putExtra("VEHICLE_PRICE", vehicle.pricePerDay)
+            putExtra("VEHICLE_TYPE", vehicle.type)
+            putExtra("VEHICLE_PRICE_PER_DAY", vehicle.pricePerDay)
+            putExtra("VEHICLE_PRICE_DISPLAY", vehicle.priceDisplay)
             putExtra("VEHICLE_IMAGE", vehicle.imageResId)
         }
         context.startActivity(intent)

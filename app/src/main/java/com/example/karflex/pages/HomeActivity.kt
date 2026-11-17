@@ -3,6 +3,9 @@ package com.example.karflex.pages
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karflex.R
@@ -10,11 +13,20 @@ import com.example.karflex.adapter.adapterModel.Vehicle
 import com.example.karflex.adapter.VehicleAdapter
 import com.example.karflex.helper.BaseActivity
 
+val JSON_URL = "https://gist.githubusercontent.com/axelkrnwn/01c506ac60735f553af951e550634b59/raw/08489b2ff76e1356a6df38d09948716628024195/karflex.json"
 class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContentView(R.layout.activity_home)
+
+        val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
+
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         setupSharedComponents()
 
