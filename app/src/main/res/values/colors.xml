@@ -7,5 +7,6 @@
 
     <color name="neutral_color">#F5F5F5</color>
     <color name="white">#FFFFFF</color>
+    <color name="green_active">#008000</color>
 
 </resources>
