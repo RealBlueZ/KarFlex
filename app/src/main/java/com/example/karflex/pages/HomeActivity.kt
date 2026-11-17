@@ -13,7 +13,6 @@ import com.example.karflex.adapter.adapterModel.Vehicle
 import com.example.karflex.adapter.VehicleAdapter
 import com.example.karflex.helper.BaseActivity
 
-val JSON_URL = "https://gist.githubusercontent.com/axelkrnwn/01c506ac60735f553af951e550634b59/raw/08489b2ff76e1356a6df38d09948716628024195/karflex.json"
 class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
