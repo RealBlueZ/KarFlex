@@ -1,6 +1,8 @@
 package com.example.karflex.helper
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -36,23 +38,23 @@ open class BaseActivity: AppCompatActivity() {
     }
 
     protected fun setupBottomNavigation() {
-        val llBrowse = findViewById<LinearLayout>(R.id.llBrowseIcon)
-        val llMyRental = findViewById<LinearLayout>(R.id.llMyRentalIcon)
-        val llProfile = findViewById<LinearLayout>(R.id.llProfileIcon)
+        val btnBrowse = findViewById<ImageButton>(R.id.btnBrowse)
+        val btnMyRental = findViewById<ImageButton>(R.id.btnMyRental)
+        val btnProfile = findViewById<ImageButton>(R.id.btnProfile)
 
-        llBrowse.setOnClickListener {
+        btnBrowse.setOnClickListener {
             if(this !is HomeActivity){
                 startActivity(Intent(this, HomeActivity::class.java))
             }
         }
 
-        llMyRental.setOnClickListener {
+        btnMyRental.setOnClickListener {
             if (this !is MyRentalsActivity) {
                 startActivity(Intent(this, MyRentalsActivity::class.java))
             }
         }
 
-        llProfile.setOnClickListener {
+        btnProfile.setOnClickListener {
             if (this !is ProfileActivity) {
                 startActivity(Intent(this, ProfileActivity::class.java))
             }
