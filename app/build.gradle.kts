@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.karflex"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.play.services.maps)
     implementation("com.google.android.gms:play-services-maps:19.2.0")
+    implementation("com.android.volley:volley:1.2.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
