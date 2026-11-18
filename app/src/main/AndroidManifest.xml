@@ -65,9 +65,6 @@
             android:theme="@style/Base.Theme.KarFlex.FullScreen"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
-        <service android:name=".services.JSONService"
-            android:exported="false"/>
     </application>
 
 </manifest>
