@@ -48,6 +48,7 @@ class SignUpActivity : AppCompatActivity() {
 
         confirmPasswordToggleHelper.setup()
 
+        // fungsi button untuk register
         btnRegister.setOnClickListener {
             val username = etUsername.text.toString()
             val phone = etPhone.text.toString()
@@ -82,17 +83,22 @@ class SignUpActivity : AppCompatActivity() {
                 if(insertId != -1L){
                     Toast.makeText(this, "Register Berhasil", Toast.LENGTH_SHORT).show()
 
+                    // pindah otomatis jika sudah mendaftar akun baru
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
-                } else {
+                }
+                // jika register gagal
+                else {
                     Toast.makeText(this, "Register Gagal! Username sudah terdaftar.", Toast.LENGTH_SHORT).show()
                 }
-            }catch (e: Exception){
+            }
+            // jika error
+            catch (e: Exception){
                 Toast.makeText(this, "Terjadi kesalahan: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
-
+        // Pindah manual ke Login Activiry
         tvLoginHere.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

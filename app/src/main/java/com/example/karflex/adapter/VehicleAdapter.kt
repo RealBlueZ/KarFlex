@@ -8,16 +8,16 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.karflex.R
 import com.example.karflex.adapter.adapterModel.Vehicle
-import com.example.karflex.pages.VerifyActivity
+import com.example.karflex.pages.DetailVehicleActivity
 
 class VehicleAdapter(private val vehicleList: List<Vehicle>) :
     RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder>() {
 
     class VehicleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivVehicle: ImageView = itemView.findViewById(R.id.ivVehicle)
-        val tvStatus: TextView = itemView.findViewById(R.id.tvStatus)
         val tvVehicleName: TextView = itemView.findViewById(R.id.tvVehicleName)
         val tvVehicleType: TextView = itemView.findViewById(R.id.tvVehicleType)
         val tvVehiclePrice: TextView = itemView.findViewById(R.id.tvVehiclePrice)
@@ -32,17 +32,21 @@ class VehicleAdapter(private val vehicleList: List<Vehicle>) :
 
     override fun onBindViewHolder(holder: VehicleViewHolder, position: Int) {
         val vehicle = vehicleList[position]
-        holder.ivVehicle.setImageResource(vehicle.imageResId)
         holder.tvVehicleName.text = vehicle.name
         holder.tvVehicleType.text = vehicle.type
         holder.tvVehiclePrice.text = vehicle.priceDisplay
 
+        Glide.with(holder.itemView.context).load(vehicle.imageUrl).placeholder(R.drawable.none_image).error(R.drawable.none_image).into(holder.ivVehicle)
+
+        // pindah ke DetailVehicleActivity untuk rent kendaraan, bawa data dari JSON
         holder.btnRent.setOnClickListener {
         val context = holder.itemView.context
-        val intent = Intent(context, VerifyActivity::class.java).apply {
+        val intent = Intent(context, DetailVehicleActivity::class.java).apply {
             putExtra("VEHICLE_NAME", vehicle.name)
-            putExtra("VEHICLE_PRICE", vehicle.pricePerDay)
-            putExtra("VEHICLE_IMAGE", vehicle.imageResId)
+            putExtra("VEHICLE_TYPE", vehicle.type)
+            putExtra("VEHICLE_PRICE_PER_DAY", vehicle.pricePerDay)
+            putExtra("VEHICLE_PRICE_DISPLAY", vehicle.priceDisplay)
+            putExtra("VEHICLE_IMAGE", vehicle.imageUrl)
         }
         context.startActivity(intent)
     }

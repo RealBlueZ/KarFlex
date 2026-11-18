@@ -5,5 +5,5 @@ data class Vehicle(
     val type: String,
     val priceDisplay: String,
     val pricePerDay: Int,
-    val imageResId: Int
+    val imageUrl: String
 )
