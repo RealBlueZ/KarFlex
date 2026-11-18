@@ -40,8 +40,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
     implementation(libs.play.services.maps)
-    implementation("com.google.android.gms:play-services-maps:19.2.0")
-    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.android.gms:play-services-maps:19.2.0") // google map
+    implementation("com.android.volley:volley:1.2.1") // request data JSON
+    implementation("com.github.bumptech.glide:glide:4.14.2") // image loading library
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)

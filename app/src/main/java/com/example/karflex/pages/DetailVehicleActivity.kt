@@ -46,7 +46,7 @@ class DetailVehicleActivity : BaseActivity() {
         val llRentedOut = findViewById<LinearLayout>(R.id.layoutRentedOut)
 
 
-        val vehicleImage = intent.getIntExtra("vehicle_image", R.drawable.none_image)
+        val vehicleImage = intent.getStringExtra("VEHICLE_IMAGE") ?: ""
         val vehicleName = intent.getStringExtra("vehicle_name")
         val vehicleBrand = intent.getStringExtra("vehicle_brand")
         val transmission = intent.getStringExtra("vehicle_transmission")
@@ -56,7 +56,7 @@ class DetailVehicleActivity : BaseActivity() {
         val isRented = intent.getBooleanExtra("is_rented", false)
 
 
-        ivVehicle.setImageResource(vehicleImage)
+//        ivVehicle.setImageResource(vehicleImage)
         tvVehicleName.text = vehicleName
         tvVehicleBrand.text = vehicleBrand
         tvVehicleTransmission.text = transmission
