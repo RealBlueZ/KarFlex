@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.karflex.R
 import com.example.karflex.adapter.adapterModel.Vehicle
 import com.example.karflex.pages.DetailVehicleActivity
-import com.example.karflex.pages.VerifyActivity
 
 class VehicleAdapter(private val vehicleList: List<Vehicle>) :
     RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder>() {
