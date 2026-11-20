@@ -16,10 +16,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.karflex.R
-import com.example.karflex.database.dao.VehicleDAO
-import com.example.karflex.database.dbhelper.DatabaseHelper
 import com.example.karflex.helper.BaseActivity
-import kotlin.time.Duration
 
 class DetailVehicleActivity : BaseActivity() {
 
@@ -41,8 +38,10 @@ class DetailVehicleActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_detail_vehicle)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
 
         val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
@@ -60,7 +59,7 @@ class DetailVehicleActivity : BaseActivity() {
         tvVehicleDesc = findViewById(R.id.tvVehicleDescription)
 
         etRentalDuration = findViewById(R.id.etRentalDuration)
-        btnRent = findViewById(R.id.btnRent)
+        btnRent = findViewById(R.id.btnRentDetailActivity)
 
         llRentalForm = findViewById(R.id.layoutRentalForm)
         llRentedOut = findViewById(R.id.layoutRentedOut)
