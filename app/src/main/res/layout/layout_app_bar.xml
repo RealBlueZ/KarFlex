@@ -54,18 +54,5 @@
         android:clickable="true"
         android:focusable="true"
         android:contentDescription="Notifications"/>
-    
-    <ImageView
-        android:id="@+id/ivPhotoProfile"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="12dp"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/photo_profile"
-        android:scaleType="centerCrop"
-        android:clipToOutline="true"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/bg_avatar_circle"/>
 
 </LinearLayout>

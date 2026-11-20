@@ -40,16 +40,12 @@ class VehicleAdapter(private val vehicleList: List<Vehicle>) :
 
         // pindah ke DetailVehicleActivity untuk rent kendaraan, bawa data dari JSON
         holder.btnRent.setOnClickListener {
-        val context = holder.itemView.context
-        val intent = Intent(context, DetailVehicleActivity::class.java).apply {
-            putExtra("VEHICLE_NAME", vehicle.name)
-            putExtra("VEHICLE_TYPE", vehicle.type)
-            putExtra("VEHICLE_PRICE_PER_DAY", vehicle.pricePerDay)
-            putExtra("VEHICLE_PRICE_DISPLAY", vehicle.priceDisplay)
-            putExtra("VEHICLE_IMAGE", vehicle.imageUrl)
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailVehicleActivity::class.java).apply {
+                putExtra("VEHICLE_ID", vehicle.id)
+            }
+            context.startActivity(intent)
         }
-        context.startActivity(intent)
-    }
     }
 
     override fun getItemCount(): Int = vehicleList.size

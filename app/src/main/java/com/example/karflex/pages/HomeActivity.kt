@@ -78,6 +78,7 @@ class HomeActivity : BaseActivity() {
             for (i in 0 until jsonArray.length()){
                 val obj = jsonArray.getJSONObject(i)
 
+                val id = obj.optInt("id", -1)
                 val name = obj.optString("model_name", "Nameless")
                 val type = obj.optString("type", "Car or Motorcycle")
                 val transmission = obj.optString("transmission", "Automatic")
@@ -91,6 +92,7 @@ class HomeActivity : BaseActivity() {
                 // memasukan data JSON agar dapat ditampikan oleh RecyclerView
                 vehicleList.add(
                     Vehicle(
+                        id = id,
                         name = name,
                         type = subtitle,
                         priceDisplay = priceDisplay,

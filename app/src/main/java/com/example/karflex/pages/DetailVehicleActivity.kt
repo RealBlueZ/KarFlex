@@ -1,6 +1,7 @@
 package com.example.karflex.pages
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -11,10 +12,33 @@ import android.widget.Toast
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.karflex.R
+import com.example.karflex.database.dao.VehicleDAO
+import com.example.karflex.database.dbhelper.DatabaseHelper
 import com.example.karflex.helper.BaseActivity
+import kotlin.time.Duration
 
 class DetailVehicleActivity : BaseActivity() {
+
+    private val JSON_URL =
+        "https://gist.githubusercontent.com/axelkrnwn/01c506ac60735f553af951e550634b59/raw/08489b2ff76e1356a6df38d09948716628024195/karflex.json"
+
+    lateinit var ivVehicle: ImageView
+    lateinit var tvVehicleName: TextView
+    lateinit var tvVehicleBrand: TextView
+    lateinit var tvVehicleTransmission: TextView
+    lateinit var tvVehicleType: TextView
+    lateinit var tvAvailability: TextView
+    lateinit var tvVehiclePrice: TextView
+    lateinit var tvVehicleDesc: TextView
+    lateinit var etRentalDuration: EditText
+    lateinit var btnRent: Button
+    lateinit var llRentalForm: LinearLayout
+    lateinit var llRentedOut: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -26,39 +50,32 @@ class DetailVehicleActivity : BaseActivity() {
 
         setupSharedComponents()
 
-        val ivVehicle = findViewById<ImageView>(R.id.ivVehicle)
-        val tvVehicleName = findViewById<TextView>(R.id.tvVehicleName)
-        val tvVehicleBrand = findViewById<TextView>(R.id.tvVehicleBrand)
-        val tvVehicleTransmission = findViewById<TextView>(R.id.tvTransmission)
-        val tvVehicleType = findViewById<TextView>(R.id.tvVehicleType)
-        val tvAvailability = findViewById<TextView>(R.id.tvAvailability)
-        val tvVehiclePrice = findViewById<TextView>(R.id.tvVehiclePrice)
-        val tvVehicleDesc = findViewById<TextView>(R.id.tvVehicleDescription)
+        ivVehicle = findViewById(R.id.ivVehicle)
+        tvVehicleName = findViewById(R.id.tvVehicleName)
+        tvVehicleBrand = findViewById(R.id.tvVehicleBrand)
+        tvVehicleTransmission = findViewById(R.id.tvTransmission)
+        tvVehicleType = findViewById(R.id.tvVehicleType)
+        tvAvailability = findViewById(R.id.tvAvailability)
+        tvVehiclePrice = findViewById(R.id.tvVehiclePrice)
+        tvVehicleDesc = findViewById(R.id.tvVehicleDescription)
 
-        val etRentalDuration = findViewById<EditText>(R.id.etRentalDuration)
-        val btnRent = findViewById<Button>(R.id.btnRent)
+        etRentalDuration = findViewById(R.id.etRentalDuration)
+        btnRent = findViewById(R.id.btnRent)
 
-        val llRentalForm = findViewById<LinearLayout>(R.id.layoutRentalForm)
-        val llRentedOut = findViewById<LinearLayout>(R.id.layoutRentedOut)
+        llRentalForm = findViewById(R.id.layoutRentalForm)
+        llRentedOut = findViewById(R.id.layoutRentedOut)
 
 
-        val vehicleImage = intent.getStringExtra("VEHICLE_IMAGE") ?: ""
-        val vehicleName = intent.getStringExtra("vehicle_name")
-        val vehicleBrand = intent.getStringExtra("vehicle_brand")
-        val transmission = intent.getStringExtra("vehicle_transmission")
-        val vehicleType = intent.getStringExtra("vehicle_type")
-        val vehiclePrice = intent.getStringExtra("vehicle_price")
-        val description = intent.getStringExtra("vehicle_description")
+        val vehicleId = intent.getIntExtra("VEHICLE_ID", -1)
+
+        if(vehicleId != -1){
+            loadVehicleDetail(vehicleId)
+        }else{
+            Toast.makeText(this, "Vehicle ID not found", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
         val isRented = intent.getBooleanExtra("is_rented", false)
-
-
-//        ivVehicle.setImageResource(vehicleImage)
-        tvVehicleName.text = vehicleName
-        tvVehicleBrand.text = vehicleBrand
-        tvVehicleTransmission.text = transmission
-        tvVehicleType.text = vehicleType
-        tvVehiclePrice.text = vehiclePrice
-        tvVehicleDesc.text = description
 
         if(isRented){
             tvAvailability.text = "Rented Out"
@@ -106,6 +123,70 @@ class DetailVehicleActivity : BaseActivity() {
 
             // LANJUT BUAT SIMPAN KE SQLite
         }
+    }
+    private fun loadVehicleDetail(vehicleId: Int) {
 
+        val queue = Volley.newRequestQueue(this)
+
+        val request = JsonArrayRequest(
+            JSON_URL,
+            { response ->
+
+                var vehicleFound = false
+
+                for (i in 0 until response.length()) {
+
+                    val obj = response.getJSONObject(i)
+
+                    if (obj.optInt("id") == vehicleId) {
+
+                        vehicleFound = true
+
+                        val name = obj.optString("model_name")
+                        val type = obj.optString("type")
+                        val brand = obj.optString("brand")
+                        val price = obj.optInt("price_per_day")
+                        val transmission = obj.optString("transmission")
+                        val image = obj.optString("image_url")
+                        val description = obj.optString("description")
+
+                        tvVehicleName.text = name
+                        tvVehicleBrand.text = brand
+                        tvVehicleType.text = type
+                        tvVehicleTransmission.text = transmission
+                        tvVehiclePrice.text = "Rp $price"
+                        tvVehicleDesc.text = description
+
+                        Glide.with(this)
+                            .load(image)
+                            .placeholder(R.drawable.none_image)
+                            .error(R.drawable.none_image)
+                            .into(ivVehicle)
+
+                        break
+                    }
+                }
+
+                if (!vehicleFound) {
+                    Toast.makeText(
+                        this,
+                        "Vehicle not found",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                }
+            },
+            { error ->
+                Log.e("VEHICLE_DETAIL", "Error: ${error.message}")
+
+                Toast.makeText(
+                    this,
+                    "Failed to load vehicle details",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        )
+
+        queue.add(request)
     }
 }

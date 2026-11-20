@@ -59,6 +59,7 @@
             android:textColor="#000000"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitleHigh"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="32dp"/>
 
         <TextView
@@ -70,6 +71,7 @@
             android:textColor="#6C757D"
             app:layout_constraintTop_toBottomOf="@id/tvWelcomeTitle"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="4dp"/>
 
         <androidx.cardview.widget.CardView

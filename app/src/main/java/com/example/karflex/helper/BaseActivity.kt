@@ -18,7 +18,6 @@ open class BaseActivity: AppCompatActivity() {
     protected fun setupAppBar() {
         val llNameApp = findViewById<LinearLayout>(R.id.llNameApp)
         val btnNotification = findViewById<ImageButton>(R.id.btnNotifications)
-        val ivProfile = findViewById<ImageView>(R.id.ivPhotoProfile)
 
         llNameApp.setOnClickListener {
             if(this !is HomeActivity){
@@ -28,12 +27,6 @@ open class BaseActivity: AppCompatActivity() {
 
         btnNotification.setOnClickListener {
             Toast.makeText(this, "Notification clicked!", Toast.LENGTH_SHORT).show()
-        }
-
-        ivProfile.setOnClickListener {
-            if(this !is ProfileActivity){
-                startActivity(Intent(this, ProfileActivity::class.java))
-            }
         }
     }
 
