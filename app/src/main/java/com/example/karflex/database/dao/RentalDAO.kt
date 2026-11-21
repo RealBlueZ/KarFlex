@@ -91,7 +91,7 @@ class RentalDAO(private val dbHelper: DatabaseHelper)  {
             |v.${DatabaseHelper.VEHICLE_MODEL}, v.${DatabaseHelper.VEHICLE_BRAND}, v.${DatabaseHelper.VEHICLE_IMAGE},
             |r.${DatabaseHelper.RENTAL_DURATION}, r.${DatabaseHelper.RENTAL_START_DATE}, r.${DatabaseHelper.RENTAL_STATUS}
             |FROM ${DatabaseHelper.TABLE_RENTAL} r
-            |INNER JOIN ${DatabaseHelper.TABLE_VEHICLE} v ON r.${DatabaseHelper.RENTAL_VEHICLE_ID} = v.${DatabaseHelper.RENTAL_ID}
+            |INNER JOIN ${DatabaseHelper.TABLE_VEHICLE} v ON r.${DatabaseHelper.RENTAL_VEHICLE_ID} = v.${DatabaseHelper.VEHICLE_ID}
             |WHERE r.${DatabaseHelper.RENTAL_USERS_ID} = ?
             |AND (v.${DatabaseHelper.VEHICLE_MODEL} LIKE ? OR v.${DatabaseHelper.VEHICLE_BRAND} LIKE ?)
             |ORDER BY r.${DatabaseHelper.RENTAL_ID} DESC

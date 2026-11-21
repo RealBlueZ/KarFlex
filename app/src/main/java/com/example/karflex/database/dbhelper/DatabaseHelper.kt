@@ -73,8 +73,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         """.trimMargin()
 
         db?.execSQL(createTableUser)
-        db?.execSQL(createTableRental)
         db?.execSQL(createTableVehicle)
+        db?.execSQL(createTableRental)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {

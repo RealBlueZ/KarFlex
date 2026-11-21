@@ -134,23 +134,23 @@
             <Button
                 android:id="@+id/btnUpdateDuration"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="UPDATE"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:gravity="center"
-                android:background="@drawable/bg_update_duration"
+                android:backgroundTint="@color/tertiary_color"
                 android:textColor="@color/white"/>
 
             <Button
                 android:id="@+id/btnCancelRental"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cancel Rental"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:gravity="center"
-                android:background="@drawable/bg_cancel_rental"
+                android:backgroundTint="@color/white"
                 android:textColor="#DE0A26"/>
 
         </LinearLayout>

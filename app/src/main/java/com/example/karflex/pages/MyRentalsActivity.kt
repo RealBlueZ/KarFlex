@@ -19,6 +19,11 @@ import com.example.karflex.R
 import com.example.karflex.adapter.MyRentalAdapter
 import com.example.karflex.adapter.adapterModel.MyRentalVehicles
 import com.example.karflex.helper.BaseActivity
+import com.example.karflex.database.dao.RentalDAO
+import com.example.karflex.database.dbhelper.DatabaseHelper
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 // Class yang mengurus page my rentals, yaitu page yang menampilkan vehicle apa saja yang sedang di rental user
 class MyRentalsActivity : BaseActivity() {
@@ -75,9 +80,44 @@ class MyRentalsActivity : BaseActivity() {
     // Ngambil list kendaraan yang sedang di rental oleh user yang sudah log in
     private fun loadMyRentals() {
 
-        // TODO:
-        // Ambil active rental berdasarkan logged-in user dari SQLite.
-        // Masukkan hasil query ke mtRentalList.
+        val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val userId = sharedPref.getLong("LOGGED_IN_USER_ID", -1L)
+
+        if (userId == -1L) {
+            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val databaseHelper = DatabaseHelper(this)
+        val rentalDAO = RentalDAO(databaseHelper)
+
+        val rentals = rentalDAO.getActiveRentalByUser(userId)
+
+        mtRentalList.clear()
+
+        for (rental in rentals) {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            val calendar = Calendar.getInstance()
+            calendar.time = dateFormat.parse(rental.startDate)!!
+
+            calendar.add(Calendar.DAY_OF_MONTH, rental.duration)
+
+            val endDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
+
+            val myRental = MyRentalVehicles(
+                rentalId = rental.rentalId,
+                vehicleImage = rental.image,
+                vehicleName = rental.modelName,
+                vehicleBrand = rental.brand,
+                durationRent = rental.duration,
+                startDateRent = rental.startDate,
+                statusRent = rental.status,
+                endDateRent = endDate
+            )
+
+            mtRentalList.add(myRental)
+        }
 
         updateRentalList()
     }

@@ -6,9 +6,19 @@ import com.example.karflex.database.dbhelper.DatabaseHelper
 
 class VehicleDAO (private val dbHelper: DatabaseHelper) {
 
-    fun insertVehicle(modelName: String, type: String, brand: String, pricePerDay: Int, transmission: String, image: String, desc: String): Long{
+    fun insertVehicle(
+        vehicleId: Long,
+        modelName: String,
+        type: String,
+        brand: String,
+        pricePerDay: Int,
+        transmission: String,
+        image: String,
+        desc: String
+    ): Long{
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
+            put(DatabaseHelper.VEHICLE_ID, vehicleId)
             put(DatabaseHelper.VEHICLE_MODEL, modelName)
             put(DatabaseHelper.VEHICLE_TYPE, type)
             put(DatabaseHelper.VEHICLE_BRAND, brand)

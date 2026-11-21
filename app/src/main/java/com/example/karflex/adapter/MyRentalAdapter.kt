@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.karflex.R
 import com.example.karflex.adapter.adapterModel.MyRentalVehicles
-import org.w3c.dom.Text
 
 class MyRentalAdapter(
     private val mtRentalList: List<MyRentalVehicles>,
@@ -32,7 +32,7 @@ class MyRentalAdapter(
         parent: ViewGroup,
         viewType: Int
     ): MyRentalAdapter.MyRentalViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_my_rentals, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_my_rental, parent, false)
 
         return MyRentalViewHolder(view)
     }
@@ -45,7 +45,9 @@ class MyRentalAdapter(
 
         holder.tvRentalStatus.text = myRental.statusRent
         holder.tvVehicleName.text = myRental.vehicleName
-        holder.ivVehicleImage.setImageResource(myRental.vehicleImage)
+        Glide.with(holder.itemView.context)
+            .load(myRental.vehicleImage)
+            .into(holder.ivVehicleImage)
         holder.tvStartDate.text = myRental.startDateRent
         holder.tvDuration.text = "${myRental.durationRent} Days"
         holder.tvEndDate.text = myRental.endDateRent

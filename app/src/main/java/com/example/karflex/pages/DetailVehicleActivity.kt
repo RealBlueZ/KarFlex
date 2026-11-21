@@ -1,5 +1,6 @@
 package com.example.karflex.pages
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,9 +17,29 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.karflex.R
+import com.example.karflex.database.dao.RentalDAO
+import com.example.karflex.database.dao.VehicleDAO
+import com.example.karflex.database.dbhelper.DatabaseHelper
 import com.example.karflex.helper.BaseActivity
+import java.util.Date
+import java.util.Locale
 
 class DetailVehicleActivity : BaseActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
+    private lateinit var vehicleDAO: VehicleDAO
+    private lateinit var rentalDAO: RentalDAO
+
+    private var currentVehicleId = -1
+    private var currentVehicleName = ""
+    private var currentVehicleType = ""
+    private var currentVehicleBrand = ""
+    private var currentVehiclePrice = 0
+    private var currentVehicleTransmission = ""
+    private var currentVehicleImage = ""
+    private var currentVehicleDescription = ""
+
+    private var isVehicleLoaded = false
 
     private val JSON_URL =
         "https://gist.githubusercontent.com/axelkrnwn/01c506ac60735f553af951e550634b59/raw/08489b2ff76e1356a6df38d09948716628024195/karflex.json"
@@ -39,6 +60,10 @@ class DetailVehicleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_vehicle)
+
+        databaseHelper = DatabaseHelper(this)
+        vehicleDAO = VehicleDAO(databaseHelper)
+        rentalDAO = RentalDAO(databaseHelper)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -117,10 +142,7 @@ class DetailVehicleActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            Toast.makeText(this, "Rental successful! Duration: $duration days", Toast.LENGTH_SHORT).show()
-
-
-            // LANJUT BUAT SIMPAN KE SQLite
+            saveRental(duration)
         }
     }
     private fun loadVehicleDetail(vehicleId: Int) {
@@ -149,11 +171,22 @@ class DetailVehicleActivity : BaseActivity() {
                         val image = obj.optString("image_url")
                         val description = obj.optString("description")
 
+                        currentVehicleId = vehicleId
+                        currentVehicleName = name
+                        currentVehicleType = type
+                        currentVehicleBrand = brand
+                        currentVehiclePrice = price
+                        currentVehicleTransmission = transmission
+                        currentVehicleImage = image
+                        currentVehicleDescription = description
+                        isVehicleLoaded = true
+
+                        // Tampilkan data ke UI
                         tvVehicleName.text = name
                         tvVehicleBrand.text = brand
                         tvVehicleType.text = type
+                        tvVehiclePrice.text = "Rp ${String.format("%,d", price)} / day"
                         tvVehicleTransmission.text = transmission
-                        tvVehiclePrice.text = "Rp $price"
                         tvVehicleDesc.text = description
 
                         Glide.with(this)
@@ -187,5 +220,77 @@ class DetailVehicleActivity : BaseActivity() {
         )
 
         queue.add(request)
+    }
+
+    private fun saveRental(duration: Int) {
+        if(!isVehicleLoaded){
+            Toast.makeText(this, "Vehicle data is still loading", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val sharedPref = getSharedPreferences(
+            "UserSession",
+            MODE_PRIVATE
+        )
+
+        val userId = sharedPref.getLong("LOGGED_IN_USER_ID", -1L)
+
+        if(userId == -1L) {
+            Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val vehicleCursor = vehicleDAO.getVehicleById(currentVehicleId.toLong())
+
+        val vehicleExists = vehicleCursor?.moveToFirst() == true
+        vehicleCursor?.close()
+
+        if(!vehicleExists) {
+            val vehicleResult = vehicleDAO.insertVehicle(
+                vehicleId = currentVehicleId.toLong(),
+                modelName = currentVehicleName,
+                type = currentVehicleType,
+                brand = currentVehicleBrand,
+                pricePerDay = currentVehiclePrice,
+                transmission = currentVehicleTransmission,
+                image = currentVehicleImage,
+                desc = currentVehicleDescription
+            )
+
+            if(vehicleResult == -1L) {
+                Toast.makeText(this, "Failed to save vehicle", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+
+        val startDate = SimpleDateFormat(
+            "yyyy-MM-dd",
+            Locale.getDefault()
+        ).format(Date())
+
+        // Simpan transaksi rental
+        val rentalResult = rentalDAO.insertRental(
+            vehicleId = currentVehicleId.toLong(),
+            userId = userId,
+            duration = duration,
+            startDate = startDate,
+            status = "ACTIVE"
+        )
+
+        if (rentalResult != -1L) {
+            Toast.makeText(
+                this,
+                "Rental successful! Duration: $duration days",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            finish()
+        } else {
+            Toast.makeText(
+                this,
+                "Failed to save rental",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
