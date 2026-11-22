@@ -7,6 +7,7 @@ import android.text.InputType
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -138,15 +139,23 @@ class MyRentalsActivity : BaseActivity() {
     // function yang bertugas untuk mendapatkan angka durasi baru dari user yang berupa Alert Dialog
     private fun showUpdateDialog(rental: MyRentalVehicles) {
 
-        val input = EditText(this)
-        input.inputType = InputType.TYPE_CLASS_NUMBER
-        input.hint = "Enter new duration"
-        input.setText(rental.durationRent.toString())
+        val input = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_NUMBER
+            hint = "Enter duration in days"
+            setText(rental.durationRent.toString())
+            setSelectAllOnFocus(true)
+        }
+
+        val container = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(48, 8, 48, 0)
+            addView(input)
+        }
 
         AlertDialog.Builder(this)
             .setTitle("Update Rental Duration")
-            .setMessage("Enter your new rental duration in days.")
-            .setView(input)
+            .setMessage("Input duration in days")
+            .setView(container)
             .setPositiveButton("UPDATE", null)
             .setNegativeButton("CANCEL", null)
             .create()
@@ -193,16 +202,30 @@ class MyRentalsActivity : BaseActivity() {
                                 return@setOnClickListener
                             }
 
-                            // TODO:
                             // Update rental duration in SQLite.
+                            val databaseHelper = DatabaseHelper(this@MyRentalsActivity)
+                            val rentalDAO = RentalDAO(databaseHelper)
 
-                            Toast.makeText(
-                                this@MyRentalsActivity,
-                                "Duration validation successful",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            val updateRows = rentalDAO.updateRentalDuration(rental.rentalId, newDuration)
 
-                            dismiss()
+                            if (updateRows > 0) {
+                                Toast.makeText(
+                                    this@MyRentalsActivity,
+                                    "Update duration successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                loadMyRentals()
+
+                                dismiss()
+                            } else {
+                                Toast.makeText(
+                                    this@MyRentalsActivity,
+                                    "Failed to update rental duration",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
                         }
                 }
 
@@ -220,8 +243,27 @@ class MyRentalsActivity : BaseActivity() {
             )
             .setPositiveButton("YES") { _, _ ->
 
-                // TODO:
                 // Delete selected rental from SQLite.
+                val databaseHelper = DatabaseHelper(this@MyRentalsActivity)
+                val rentalDAO = RentalDAO(databaseHelper)
+
+                val deleteRows = rentalDAO.deleteRental(rental.rentalId)
+
+                if (deleteRows > 0) {
+                    Toast.makeText(
+                        this@MyRentalsActivity,
+                        "Rental cancelled successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    loadMyRentals()
+                } else {
+                    Toast.makeText(
+                        this@MyRentalsActivity,
+                        "Failed to cancel rental",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
             }
             .setNegativeButton("NO", null)
