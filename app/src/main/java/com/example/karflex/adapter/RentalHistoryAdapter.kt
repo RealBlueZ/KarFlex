@@ -7,11 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.karflex.R
-import com.example.karflex.adapter.adapterModel.RentalVehicle
+import com.example.karflex.database.model.RentalDetail
 
-class RentalHistoryAdapter(private val rentalHistoryList: List<RentalVehicle>):
-    RecyclerView.Adapter<RentalHistoryAdapter.RentalHistoryViewHolder>() {
+class RentalHistoryAdapter: RecyclerView.Adapter<RentalHistoryAdapter.RentalHistoryViewHolder>() {
+    private val rentalHistoryList = mutableListOf<RentalDetail>()
+
+    fun updateData(newList: List<RentalDetail>) {
+        rentalHistoryList.clear()
+        rentalHistoryList.addAll(newList)
+        notifyDataSetChanged()
+    }
     class RentalHistoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         val ivVehicle: ImageView = itemView.findViewById(R.id.ivVehicle)
@@ -42,13 +49,16 @@ class RentalHistoryAdapter(private val rentalHistoryList: List<RentalVehicle>):
     ) {
         val rental = rentalHistoryList[position]
 
-        holder.ivVehicle.setImageResource(rental.vehicleImage)
-        holder.tvVehicleName.text = rental.vehicleName
-        holder.tvVehicleBrand.text = rental.vehicleBrand
-        holder.tvDuration.text = "${rental.durationRent} Days"
-        holder.tvStartDate.text = rental.startDateRent
+        Glide.with(holder.itemView.context)
+            .load(rental.image)
+            .into(holder.ivVehicle)
 
-        when (rental.statusRent.lowercase()){
+        holder.tvVehicleName.text = rental.modelName
+        holder.tvVehicleBrand.text = rental.brand
+        holder.tvDuration.text = "${rental.duration} Days"
+        holder.tvStartDate.text = rental.startDate
+
+        when (rental.status.lowercase()){
             "active" -> {
                 holder.tvRentalStatus.text = "ACTIVE"
                 holder.tvRentalStatus.setTextColor(
@@ -73,6 +83,23 @@ class RentalHistoryAdapter(private val rentalHistoryList: List<RentalVehicle>):
                 holder.tvRentalStatus.setBackgroundResource(
                     R.drawable.bg_status_completed
                 )
+            }
+
+            "cancelled" -> {
+                holder.tvRentalStatus.text = "CANCELLED"
+                holder.tvRentalStatus.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        android.R.color.holo_red_dark
+                    )
+                )
+
+                holder.tvRentalStatus.setBackgroundResource(
+                    R.drawable.bg_status_cancelled
+                )
+            }
+            else -> {
+                holder.tvRentalStatus.text = rental.status.uppercase()
             }
         }
     }

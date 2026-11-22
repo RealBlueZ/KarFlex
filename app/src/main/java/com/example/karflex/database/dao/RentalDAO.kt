@@ -93,12 +93,12 @@ class RentalDAO(private val dbHelper: DatabaseHelper)  {
             |FROM ${DatabaseHelper.TABLE_RENTAL} r
             |INNER JOIN ${DatabaseHelper.TABLE_VEHICLE} v ON r.${DatabaseHelper.RENTAL_VEHICLE_ID} = v.${DatabaseHelper.VEHICLE_ID}
             |WHERE r.${DatabaseHelper.RENTAL_USERS_ID} = ?
-            |AND (v.${DatabaseHelper.VEHICLE_MODEL} LIKE ? OR v.${DatabaseHelper.VEHICLE_BRAND} LIKE ?)
-            |ORDER BY r.${DatabaseHelper.RENTAL_ID} DESC
+            |AND v.${DatabaseHelper.VEHICLE_MODEL} LIKE ?
+            |ORDER BY r.${DatabaseHelper.RENTAL_START_DATE} DESC, r.${DatabaseHelper.RENTAL_ID} DESC
         """.trimMargin()
 
         val searchPattern = "%$searchQuery%"
-        val cursor = db.rawQuery(query, arrayOf(userId.toString(), searchPattern, searchPattern))
+        val cursor = db.rawQuery(query, arrayOf(userId.toString(), searchPattern))
 
         if(cursor.moveToFirst()){
             do{

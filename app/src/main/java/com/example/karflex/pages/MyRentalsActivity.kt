@@ -247,9 +247,12 @@ class MyRentalsActivity : BaseActivity() {
                 val databaseHelper = DatabaseHelper(this@MyRentalsActivity)
                 val rentalDAO = RentalDAO(databaseHelper)
 
-                val deleteRows = rentalDAO.deleteRental(rental.rentalId)
+                val updatedRows = rentalDAO.updateRentalStatus(
+                    rental.rentalId,
+                    "CANCELLED"
+                )
 
-                if (deleteRows > 0) {
+                if (updatedRows > 0) {
                     Toast.makeText(
                         this@MyRentalsActivity,
                         "Rental cancelled successfully",
