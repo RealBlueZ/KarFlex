@@ -54,8 +54,6 @@ class LoginActivity : AppCompatActivity() {
             val username = etUserLogin.text.toString().trim()
             val password = etPassLogin.text.toString().trim()
 
-            val phone = intent.getStringExtra("phone")
-
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Username dan Password harus diisi!", Toast.LENGTH_SHORT).show()
             }
