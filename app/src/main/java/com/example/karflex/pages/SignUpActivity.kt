@@ -51,12 +51,12 @@ class SignUpActivity : AppCompatActivity() {
         // fungsi button untuk register
         btnRegister.setOnClickListener {
             val username = etUsername.text.toString()
-            val phone = etPhone.text.toString()
+            val rawPhone = etPhone.text.toString()
             val password = etPassword.text.toString()
             val confirmPassword = etConfirmPassword.text.toString()
 
             // validasi jika input field masih ada yang kosong
-            if (username.isEmpty() || phone.isEmpty() || password.isEmpty()) {
+            if (username.isEmpty() || rawPhone.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -66,16 +66,18 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             // validasi nomor telpon minimal 10 digit atau lebih
-            else if (phone.length < 10){
+            else if (rawPhone.length < 10){
                 Toast.makeText(this, "Nomor minimal 10 angka!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             } else if (confirmPassword != password) {
                 Toast.makeText(this, "Password tidak sesuai dengan sebelumnya!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val formattedPhone = formatIndonesianPhone(rawPhone)
+
             // proses simpan user register ke database
             try{
-                val insertId = userDao.registerUser(username, password, phone)
+                val insertId = userDao.registerUser(username, password, formattedPhone)
 
                 // Periksa apakah SQL return positif atau negatif
                 // jika 1,2,3,... maka True
@@ -104,6 +106,16 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun formatIndonesianPhone(rawPhone: String): String {
+        val digitsOnly = rawPhone.replace(Regex("[^0-9]"), "")
+        val withoutPrefix = when {
+            digitsOnly.startsWith("62") -> digitsOnly.removePrefix("62")
+            digitsOnly.startsWith("0") -> digitsOnly.removePrefix("0")
+            else -> digitsOnly
+        }
+        return "+62 $withoutPrefix"
     }
 }
 
