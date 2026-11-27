@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 //classnya blm lengkap
+//dari saya(farrel), classnya udh ku tambahin, harusnya udh oke
 class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
@@ -24,14 +25,14 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_location)
 
         val toolBar = findViewById<Toolbar>(R.id.toolBar)
-
+        setSupportActionBar(toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolBar.setNavigationOnClickListener {
             finish()
         }
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
-
         mapFragment.getMapAsync(this)
     }
 
@@ -45,9 +46,7 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
             .position(karFlexLocation)
             .title("KarFlex")
             .snippet("KarFlex Store Location")
-
         googleMap.addMarker(marker)
-
         googleMap.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
                 karFlexLocation,
